@@ -24,5 +24,7 @@ public class CadastroAlunoService {
 		return obj.get();
 	}
 	
-	
+	public CadastroAluno novoAluno(CadastroAluno obj) {
+		return repository.save(obj);
+	}
 }
