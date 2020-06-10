@@ -23,4 +23,6 @@ public class CadastroAlunoService {
 		Optional<CadastroAluno> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	
 }

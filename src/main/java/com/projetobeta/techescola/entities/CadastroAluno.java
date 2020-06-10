@@ -24,6 +24,8 @@ public class CadastroAluno implements Serializable {
     private String escola;
     private String matricula;
     
+ 
+    
     public CadastroAluno() {
     	
     }
