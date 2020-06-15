@@ -1,14 +1,33 @@
 package com.projetobeta.techescola.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "tb_serie")
 public class Serie implements Serializable {
 	
     private static final long serialVersionUID = 1L;
 	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_serie;
 	
 	private String descricao;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "serie")
+	private List<CadastroAluno> alunos = new ArrayList<>();
 	
 	public Serie() {
 		
@@ -35,6 +54,13 @@ public class Serie implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	
+	public List<CadastroAluno> getAlunos() {
+		return alunos;
+	}
+
+
 
 	@Override
 	public int hashCode() {

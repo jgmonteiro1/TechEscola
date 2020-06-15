@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,20 +19,26 @@ public class CadastroAluno implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	
+	@ManyToOne
+	@JoinColumn(name = "serie_id")
+	private Serie serie;
     
-    private String nome;
+    
+
+	private String nome;
     private String email;
     private String senha;
     private String escola;
     private String matricula;
     
- 
+    
     
     public CadastroAluno() {
     	
     }
 
-	public CadastroAluno(Long id, String nome, String email, String senha, String escola, String matricula) {
+	public CadastroAluno(Long id, String nome, String email, String senha, String escola, String matricula, Serie serie) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -38,6 +46,7 @@ public class CadastroAluno implements Serializable {
 		this.senha = senha;
 		this.escola = escola;
 		this.matricula = matricula;
+		this.serie = serie;
 	}
 
 	public Long getId() {
@@ -86,6 +95,14 @@ public class CadastroAluno implements Serializable {
 
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
+	}
+	
+	public Serie getSerie() {
+		return serie;
+	}
+
+	public void setSerie(Serie serie) {
+		this.serie = serie;
 	}
 
 	@Override
