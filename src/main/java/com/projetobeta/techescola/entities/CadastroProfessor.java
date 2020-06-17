@@ -1,32 +1,41 @@
 package com.projetobeta.techescola.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_cadastro_professor")
+@Table(name = "tb_cadastro_professor")
 public class CadastroProfessor implements Serializable {
-	
-    private static final long serialVersionUID = 1L;
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_professor;
-    
-    private String nome;
-    private String email;
-    private String senha;
-    
-    private Long id_endereco;
-    
-    public CadastroProfessor() {
-    	
-    }
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_professor;
+
+	private String nome;
+	private String email;
+	private String senha;
+
+	private Long id_endereco;
+
+	@ManyToMany
+	@JoinTable(name = "disciplinas", joinColumns = @JoinColumn(name = "cadastro_professor_id"), inverseJoinColumns = @JoinColumn(name = "disciplinas_id"))
+	private Set<Disciplinas> disciplinas = new HashSet<>();
+
+	public CadastroProfessor() {
+
+	}
 
 	public CadastroProfessor(Long id_professor, String nome, String email, String senha, Long id_endereco) {
 		super();
@@ -77,6 +86,10 @@ public class CadastroProfessor implements Serializable {
 		this.id_endereco = id_endereco;
 	}
 
+	public Set<Disciplinas> getDisciplinas() {
+		return disciplinas;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,7 +114,5 @@ public class CadastroProfessor implements Serializable {
 			return false;
 		return true;
 	}
-    
-    
-	
+
 }

@@ -2,12 +2,18 @@ package com.projetobeta.techescola.entities;
 
 import java.io.Serializable;
 
+
+
+
+
 public class DisciplinaSerieProfessor implements Serializable {
 	
     private static final long serialVersionUID = 1L;
 	
 	private Long id_disc_serie_prof;
 	
+   
+    
 	private Long id_disc_serie;
 	private Long id_professor;
 	

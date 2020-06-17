@@ -1,14 +1,33 @@
 package com.projetobeta.techescola.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "tb_disciplinas")
 public class Disciplinas implements Serializable {
 	
     private static final long serialVersionUID = 1L;
 	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_disciplinas;
 	
 	private String descricao;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy="disciplinas")
+	private Set<CadastroProfessor> professores = new HashSet<>();
 	
 	public Disciplinas() {
 		
@@ -35,6 +54,13 @@ public class Disciplinas implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	
+
+	public Set<CadastroProfessor> getProfessores() {
+		return professores;
+	}
+	
 
 	@Override
 	public int hashCode() {

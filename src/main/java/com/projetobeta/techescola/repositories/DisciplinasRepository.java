@@ -3,9 +3,9 @@ package com.projetobeta.techescola.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.projetobeta.techescola.entities.CadastroProfessor;
+import com.projetobeta.techescola.entities.Disciplinas;
 
 @Repository
-public interface CadastroProfessorRepository extends JpaRepository<CadastroProfessor,Long> {
+public interface DisciplinasRepository extends JpaRepository<Disciplinas, Long>{
 
 }
