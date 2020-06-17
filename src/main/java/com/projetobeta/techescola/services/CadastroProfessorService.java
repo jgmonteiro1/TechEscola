@@ -25,4 +25,8 @@ public class CadastroProfessorService  {
 		Optional<CadastroProfessor> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public CadastroProfessor novoProfessor(CadastroProfessor obj) {
+		return repository.save(obj);
+	}
 }
