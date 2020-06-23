@@ -72,9 +72,10 @@ public class ClasseDeTestes implements CommandLineRunner {
 		serie3.getAlunos().add(aluno4);
 		
 		disciplinasRepository.saveAll(Arrays.asList(disc1,disc2,disc3,disc4,disc5));
+		professorRepository.saveAll(Arrays.asList(professor1, professor2, professor3));
 		serieRepository.saveAll(Arrays.asList(serie1, serie2, serie3));
 		alunoRepository.saveAll(Arrays.asList(aluno1, aluno2, aluno3, aluno4));
-		professorRepository.saveAll(Arrays.asList(professor1, professor2, professor3));
+		
 
 	}
 

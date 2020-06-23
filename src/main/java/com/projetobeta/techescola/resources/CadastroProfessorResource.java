@@ -2,6 +2,7 @@ package com.projetobeta.techescola.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.projetobeta.techescola.entities.CadastroProfessor;
+import com.projetobeta.techescola.entities.dto.ProfessorDTO;
 import com.projetobeta.techescola.services.CadastroProfessorService;
 
 @RestController
@@ -25,10 +27,13 @@ public class CadastroProfessorResource {
 	
 	
 	@GetMapping
-	private ResponseEntity<List<CadastroProfessor>> findAll(){
+	private ResponseEntity<List<ProfessorDTO>> findAll(){
 		List<CadastroProfessor> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		//Transformando minha list de CadastroProfessor em uma lista(listaDTO) de ProfessorDTO
+		List<ProfessorDTO> listaDTO = list.stream().map(x -> new ProfessorDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDTO);
 	}
+	
 	
 	@GetMapping(value = "/{id}")
 	private ResponseEntity<CadastroProfessor> findById(@PathVariable Long id){

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Disciplinas implements Serializable {
 	private String descricao;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy="disciplinas")
+	@ManyToMany(mappedBy="disciplinas", cascade = CascadeType.ALL)
 	private Set<CadastroProfessor> professores = new HashSet<>();
 	
 	public Disciplinas() {

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projetobeta.techescola.entities.CadastroAluno;
+import com.projetobeta.techescola.entities.dto.AlunoDTO;
 import com.projetobeta.techescola.repositories.CadastroAlunoRepository;
 
 @Service
@@ -26,5 +27,9 @@ public class CadastroAlunoService {
 	
 	public CadastroAluno novoAluno(CadastroAluno obj) {
 		return repository.save(obj);
+	}
+	
+	public CadastroAluno converteEmDTO(AlunoDTO obj) {
+		return new CadastroAluno(obj.getId(), obj.getNome(), obj.getEmail(), obj.getEscola(), obj.getMatricula(), null, null);
 	}
 }
